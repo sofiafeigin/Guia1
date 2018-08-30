@@ -1,0 +1,73 @@
+
+package guia1eje4;
+
+import java.util.Scanner;
+
+
+public class Guia1Eje4 {
+
+    
+    public static void main(String[] args) throws Exception 
+    {
+        Scanner sc=new Scanner(System.in);
+        int tamaño;
+        String arreglo[];
+                
+        System.out.println("ingrese el tamaño de la funcion");
+        tamaño=sc.nextInt();
+        
+        arreglo=new String[tamaño];
+        
+        ArrayStack a=new ArrayStack(tamaño);
+        
+        for(int i=0;i<tamaño;i++)
+        {
+            System.out.println("ingrese el elemento en la posicion "+i);
+            arreglo[i]=sc.next();
+            
+            a.push(arreglo[i]);
+        }
+        
+        
+        
+        contarSignos(arreglo,a);
+        
+        
+    }
+    
+    public static void contarSignos(String arreglo[],ArrayStack a) throws Exception
+    {
+        int contador1=0;
+        int contador2=0;
+        int contador3=0;
+        String pop;
+        
+        for(int j=0;j<arreglo.length;j++)
+        {
+            pop=a.pop();
+            
+            if(pop.equals("(")||pop.equals(")"))
+                contador1++;
+            if(pop.equals("{")||pop.equals("}"))
+                contador2++;
+            if(pop.equals("[")||pop.equals("]"))
+                contador3++;
+            
+                
+        }
+        
+        if(contador1%2==0&&contador2%2==0&&contador3%2==0)
+            System.out.println("la funcion esta escrita correctamente");
+        else
+        {
+            System.out.println("la funcion esta escrita incorrectamente");
+            System.out.println("cantidad de ()"+contador1+"\n");
+            System.out.println("cantidad de {}"+contador2+"\n");
+            System.out.println("cantidad de []"+contador3+"\n");
+        }
+            
+        
+        
+        
+    }
+}
